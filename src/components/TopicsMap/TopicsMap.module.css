@@ -1,0 +1,344 @@
+/* TopicsMap.module.css */
+.topicsMapContainer {
+  display: flex;
+  height: calc(100vh - 80px);
+  margin-top: 80px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  width: 100vw;
+}
+
+/* Kontrolki zoomu */
+.controls {
+  position: fixed;
+  top: 110px;
+  right: 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.zoomControls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.75rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.controlButton {
+  width: 45px;
+  height: 45px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controlButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.zoomLevelDisplay {
+  text-align: center;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+/* Główny obszar mapy */
+.mapArea {
+  flex: 1;
+  position: relative;
+  margin: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+
+
+.mapArea:active {
+  cursor: grabbing;
+}
+
+.mapWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2000px;  /* Duży obszar dla mapy */
+  height: 1500px;
+  transform-origin: center center;
+  transition: transform 0.3s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.topicsMap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+}
+
+.connectionsLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 380px;
+  min-width: 380px;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  padding: 2rem;
+  overflow-y: auto;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+.sidebarContent {
+  height: 100%;
+}
+
+.sidebarHeader {
+  display: flex;
+  justify-content: between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebarTitle {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ecf0f1;
+  line-height: 1.2;
+}
+
+.closeButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.sidebarDescription {
+  color: #bdc3c7;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.sidebarSection {
+  margin-bottom: 2.5rem;
+}
+
+.sidebarSection h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #ecf0f1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebarSection h3::before {
+  content: "•";
+  color: #3498db;
+  font-size: 1.5rem;
+}
+
+.prereqList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.prereqTag {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+  transition: all 0.2s ease;
+}
+
+.prereqTag:hover {
+  background: rgba(52, 152, 219, 0.3);
+  transform: translateY(-1px);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.actionButton {
+  padding: 1.2rem 2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.exploreButton {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.exploreButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(52, 152, 219, 0.5);
+}
+
+.simulationsButton {
+  background: transparent;
+  color: #3498db;
+  border: 2px solid #3498db;
+  backdrop-filter: blur(10px);
+}
+
+.simulationsButton:hover {
+  background: rgba(52, 152, 219, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Responsywność */
+@media (max-width: 1200px) {
+  .sidebar {
+    width: 340px;
+    min-width: 340px;
+  }
+}
+
+@media (max-width: 968px) {
+  .topicsMapContainer {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .mapArea {
+    margin: 1rem;
+    height: 500px;
+  }
+  
+  .sidebar {
+    width: 100%;
+    min-width: auto;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .controls {
+    top: auto;
+    bottom: 2rem;
+    right: 1rem;
+  }
+  
+  .zoomControls {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 640px) {
+  .mapArea {
+    margin: 0.5rem;
+    border-radius: 12px;
+  }
+  
+  .sidebar {
+    padding: 1.5rem;
+  }
+  
+  .sidebarTitle {
+    font-size: 1.5rem;
+  }
+  
+  .actionButton {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* Animacje */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sidebarContent {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Custom scrollbar dla sidebar */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
